@@ -44,10 +44,12 @@ void SFRGBLEDMatrix::setupSPI() {
   SPI.setDataMode(SPI_MODE0);
   SPI.setClockDivider(SPI_CLOCK_DIV4);
   SPI.setBitOrder(MSBFIRST);
+  SPI.begin();
 }
 
 void SFRGBLEDMatrix::setupPINs() {
   pinMode(MOSI, OUTPUT);
+  pinMode(SCK, OUTPUT);
   pinMode(pinSS, OUTPUT);
 }
 
