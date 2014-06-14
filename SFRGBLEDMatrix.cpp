@@ -54,7 +54,9 @@ void SFRGBLEDMatrix::setupPINs() {
 void SFRGBLEDMatrix::show() {
   digitalWrite(pinSS, LOW);
   for(uint16_t p=0;p<frameBuffSize;p++){
-    SPI.transfer(*(frameBuff + p));
+
+    SPDR=*(frameBuff + p);
+    while(!SPSR&(1<<SPIF)){};
     delayMicroseconds(64);
   }
   digitalWrite(pinSS, HIGH);
